@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         
-        $this->call(IncomeCategorySeed::class);
+        // $this->call(IncomeCategorySeed::class);
         $this->call(RoleSeed::class);
         $this->call(UserSeed::class);
        // $this->call(IncomeSeed::class);
