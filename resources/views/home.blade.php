@@ -319,7 +319,7 @@
 </div>
     </div>
     <div class="col-md-6">
-        <a href="" download>Download  Android App</a>
+        <a href="https://drive.google.com/file/d/1s_diXwrrOWnbvJzZpShCGKxhKx4n-qUO/view?usp=sharing" download>Download  Android App</a>
     </div>
 @endsection
 
