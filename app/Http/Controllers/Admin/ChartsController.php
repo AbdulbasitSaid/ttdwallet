@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Income;
 use App\Expense;
+use Illuminate\Support\Facades\Auth;
 class ChartsController extends Controller
 {
     public function index()
@@ -18,6 +19,11 @@ class ChartsController extends Controller
         $incomeChart = Income::select('amount','entry_date')->get();
         $expenseChart = Expense::select('amount','entry_date')->get();
 
-        return view('admin.charts.index',compact('incomeChart','expenseChart'));
+        $yourIncome = Income::select('amount','entry_date')->where('branch_id',Auth::user()->id)->get(); 
+        $yourExpense =Expense::select('amount','entry_date')->where('branch_id',Auth::user()->id)->get();
+
+        return view('admin.charts.index',compact(
+            'yourIncome','yourExpense',
+            'incomeChart','expenseChart'));
     }
 }
