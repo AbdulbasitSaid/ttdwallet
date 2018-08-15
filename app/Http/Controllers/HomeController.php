@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\UserAction;
 use App\Income;
 use App\Expense;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 class HomeController extends Controller
 {
@@ -43,6 +44,14 @@ class HomeController extends Controller
 
         $exp_q = Expense::with('branch') -> where('entry_date',$d_date);
         $inc_q = Income::with('branch') -> where('entry_date',$d_date);
+        $yourIncome = Income::latest()->limit(30)->get()->where('branch_id',Auth::user()->id); 
+        $yourExpense =Expense::latest()->limit(30)->get()->where('branch_id',Auth::user()->id); 
+
+
+        $yourIncomeTotal = $yourIncome->sum('amount');
+        $yourExpenseTotal = $yourExpense->sum('amount');
+
+        $yourProfit = $yourIncomeTotal - $yourExpenseTotal;
 
         $exp_total = $exp_q->sum('amount');
         $inc_total = $inc_q->sum('amount');
@@ -78,12 +87,12 @@ class HomeController extends Controller
                 $inc_summary[$line->branch->name]['amount'] += $line->amount;
             }
         }
-
+       
 
         return view('home', compact( 'useractions', 'incomes', 'expenses', 'exp_summary',
         'inc_summary',
-        'exp_total',
-        'inc_total',
+        'exp_total','yourIncome','yourExpense','yourIncomeTotal','yourExpenseTotal','yourProfit',
+        'inc_total','today',
         'profit','from','d_date'));
     }
 }
