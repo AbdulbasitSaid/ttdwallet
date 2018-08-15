@@ -318,6 +318,8 @@
         </div>
 </div>
     </div>
-
+    <div class="col-md-6">
+        <a href="" download>Download  Android App</a>
+    </div>
 @endsection
 
