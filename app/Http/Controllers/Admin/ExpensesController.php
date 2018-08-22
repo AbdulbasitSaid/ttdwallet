@@ -25,7 +25,7 @@ class ExpensesController extends Controller
             return abort(401);
         }
             if (Auth::user()->id == 1) {
-                $incomes = Expense::all();
+                $expenses = Expense::all();
             } else {
               
                 $expenses = Expense::all()->where('branch_id',Auth::user()->id);
