@@ -24,10 +24,15 @@ class ExpensesController extends Controller
         if (! Gate::allows('expense_access')) {
             return abort(401);
         }
+            if (Auth::user()->id == 1) {
+                $incomes = Expense::all();
+            } else {
+              
+                $expenses = Expense::all()->where('branch_id',Auth::user()->id);
 
-
-                $expenses = Expense::all();
-
+            }
+            
+                
         return view('admin.expenses.index', compact('expenses'));
     }
 

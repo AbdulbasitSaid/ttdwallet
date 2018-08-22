@@ -27,7 +27,14 @@ class IncomesController extends Controller
         }
 
 
+                $amdinExpense = Income::all();
+            if (Auth::user()->id == 1) {
+                
                 $incomes = Income::all();
+            } else {
+               $incomes = Income::all()->where('branch_id',Auth::user()->id);
+            }
+            
 
         return view('admin.incomes.index', compact('incomes'));
     }
