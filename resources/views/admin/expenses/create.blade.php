@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('amount', trans('quickadmin.expense.fields.amount').'*', ['class' => 'control-label']) !!}
-                    {!! Form::number('amount', old('amount'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::number('amount', old('amount'), ['class' => 'form-control', 'placeholder' => 'Please Enter Numberic Values only', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('amount'))
                         <p class="help-block">
@@ -50,7 +50,7 @@
                 <div class="col-xs-12 form-group">
                     {!! Form::label('branch_id', trans('quickadmin.expense.fields.branch').'', ['class' => 'control-label']) !!}
                     {!! Form::hidden('branch_id', $branches->id, old('branch_id'), ['class' => 'form-control select2']) !!}
-                    <p class="help-block">{{$branches}}</p>
+                    <p class="help-block">{{$branches->name}}</p>
                     @if($errors->has('branch_id'))
                         <p class="help-block">
                             {{ $errors->first('branch_id') }}

@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('amount', trans('quickadmin.income.fields.amount').'*', ['class' => 'control-label']) !!}
-                    {!! Form::number('amount', old('amount'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::number('amount', old('amount'), ['class' => 'form-control', 'placeholder' => 'Please Enter Numberic Values only', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('amount'))
                         <p class="help-block">
