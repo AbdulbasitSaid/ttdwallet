@@ -50,7 +50,7 @@
                                         <th>Expenses</th>
                                         <td>{{ number_format($exp_total, 2) }}</td>
                                     </tr>
-                                    <tr>
+                                    <tr id="profit">
                                         <th>Profit</th>
                                         <td>{{ number_format($profit, 2) }}</td>
                                     </tr>
@@ -320,6 +320,26 @@
     </div>
     <div class="col-md-6">
         <a href="https://drive.google.com/file/d/1s_diXwrrOWnbvJzZpShCGKxhKx4n-qUO/view?usp=sharing" download>Download  Android App</a>
+        <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+        <script>
+            var profit = {!!$profit!!};
+            $(document).ready(
+                function(){
+                   if(profit < 0){
+                       //alert('Lost');
+                       $('#profit').css('background-color','#FF6347')
+                   }else{
+                      // alert('Profit');
+                      $('#profit').css('background-color','#00FF7F')
+                   }
+                }
+            );
+        </script>
     </div>
+
+    
 @endsection
 
