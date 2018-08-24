@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('income_category_id', trans('quickadmin.income.fields.income-category').'*', ['class' => 'control-label']) !!}
-                    {!! Form::select('income_category_id', $income_categories, old('income_category_id'), ['class' => 'form-control select2', 'required' => '']) !!}
+                    {!! Form::select('income_category_id', $income_categories, old('income_category_id'), ['class' => 'form-control select2', 'required' => 'min',''=>'0']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('income_category_id'))
                         <p class="help-block">
@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('amount', trans('quickadmin.income.fields.amount').'*', ['class' => 'control-label']) !!}
-                    {!! Form::number('amount', old('amount'), ['class' => 'form-control', 'placeholder' => 'Please Enter Numberic Values only', 'required' => '']) !!}
+                    {!! Form::number('amount', old('amount'), ['class' => 'form-control', 'placeholder' => 'Please Enter Numberic Values only', 'required' => '','min'=>'0']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('amount'))
                         <p class="help-block">
