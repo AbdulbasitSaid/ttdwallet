@@ -6,7 +6,7 @@ use App\Expense;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 class MonthlyReportsController extends Controller
 {
     public function index(Request $r)
@@ -19,12 +19,28 @@ class MonthlyReportsController extends Controller
         ));
         $to      = clone $from;
         $to->day = $to->daysInMonth;
+        $exp_q;
+        $inc_q;
 
-        $exp_q = Expense::with('expense_category','branch')
+        if (Auth::user()->id == 1) {
+            # code...
+            $exp_q = Expense::with('expense_category','branch')
             ->whereBetween('entry_date', [$from, $to]);
 
         $inc_q = Income::with('income_category','branch')
             ->whereBetween('entry_date', [$from, $to]);
+        } else {
+            # code...
+            $exp_q = Expense::with('expense_category','branch')->where('branch_id',Auth::user()->id)
+            ->whereBetween('entry_date', [$from, $to]);
+
+        $inc_q = Income::with('income_category','branch')->where('branch_id',Auth::user()->id)
+            ->whereBetween('entry_date', [$from, $to]);
+        }
+        
+
+     
+
 
         $exp_total = $exp_q->sum('amount');
         $inc_total = $inc_q->sum('amount');
