@@ -39,14 +39,20 @@ class HomeController extends Controller
         $format = 'Y-m-d';
         
         $from  = $date->query('d',Carbon::now());
-       $d_date = date($format, strtotime($from));;
+         $d_date = date($format, strtotime($from));;
        
 
         $exp_q = Expense::with('branch') -> where('entry_date',$d_date);
         $inc_q = Income::with('branch') -> where('entry_date',$d_date);
         $yourIncome = Income::latest()->limit(30)->get()->where('branch_id',Auth::user()->id); 
         $yourExpense =Expense::latest()->limit(30)->get()->where('branch_id',Auth::user()->id); 
-
+        //Branch specific values for calculation
+        $branchIncome = Income::all() -> where('entry_date',$d_date) ->where('branch_id',Auth::user()->id);
+        $branchExpense = Expense::all()-> where('entry_date',$d_date) ->where('branch_id',Auth::user()->id);
+        $branchIncomeTotal = $branchIncome->sum('amount');
+        $branchExpenseTotal = $branchExpense->sum('amount');
+        $branchProfit = $branchIncomeTotal - $branchExpenseTotal;
+        // end of specific calculation
 
         $yourIncomeTotal = $yourIncome->sum('amount');
         $yourExpenseTotal = $yourExpense->sum('amount');
@@ -93,6 +99,7 @@ class HomeController extends Controller
         'inc_summary',
         'exp_total','yourIncome','yourExpense','yourIncomeTotal','yourExpenseTotal','yourProfit',
         'inc_total','today',
+        'branchIncome','branchExpense','branchIncomeTotal','branchExpenseTotal','branchProfit',
         'profit','from','d_date'));
     }
 }

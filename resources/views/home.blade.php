@@ -223,6 +223,73 @@
             </div>
  </div>
 @endif
+
+@if(Auth::user()->id!=1)
+<div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"> <h3>Daily Transactions</h3> </div>
+            <div class="panel-body table-responsive">
+             <div class="accordion">
+              {{--    --}}
+              {!! Form::open(['method' => 'get']) !!}
+              <div class="row">
+                
+                 <div class="form-group">
+                     <label class="col-md-2 control-label" for="Date">Date</label>
+                     <div class="col-md-10">
+                         <div class="input-group">
+                             <div class="input-group-addon">
+                                 <i class="fa fa-calendar"></i>
+                             </div>
+                           
+                             {!! Form::text('d', old('date'), ['class' => 'form-control', 'placeholder' => 
+                             'Select date', 'required' => '','id' =>'Date','autocomplete'=>'off']) !!}
+                             {{--  <input type="text" class="form-control" id="Date" autocomplete="off"/>  --}}
+                         </div>
+                     </div>
+                 </div>
+                  <div class="col-xs-4">
+                      <label class="control-label">&nbsp;</label><br>
+                      {!! Form::submit('Select Day',['class' => 'btn btn-primary']) !!}
+                  </div>
+              </div>
+
+              <div class="panel panel-default">
+                 <div class="panel-heading">
+                     Report for {{$d_date}}
+                 </div>
+                 {!! Form::close() !!}
+                 <div class="panel-body">
+                     <div class="row">
+                         <div class="col-md-12">
+                             <table class="table table-bordered table-striped">
+                                 <tr>
+                                     <th>Income</th>
+                                     <td>{{ number_format($branchIncomeTotal, 2) }}</td>
+                                 </tr>
+                                 <tr>
+                                     <th>Expenses</th>
+                                     <td>{{ number_format($branchExpenseTotal, 2) }}</td>
+                                 </tr>
+                                 <tr id="profit">
+                                     <th>Profit</th>
+                                     <td>{{ number_format($branchProfit, 2) }}</td>
+                                 </tr>
+                             </table>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+              {{--    --}}
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div class="row">
+
+@endif
 <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">Added Expenses by You</div>
@@ -330,10 +397,10 @@
                 function(){
                    if(profit < 0){
                        //alert('Lost');
-                       $('#profit').css('background-color','#FF6347')
+                       $('#profit').css('background-color','#FF6347');
                    }else{
                       // alert('Profit');
-                      $('#profit').css('background-color','#00FF7F')
+                      $('#profit').css('background-color','#00FF7F');
                    }
                 }
             );
