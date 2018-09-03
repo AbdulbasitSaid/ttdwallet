@@ -47,7 +47,7 @@
                     @endif
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('branch_id', trans('quickadmin.expense.fields.branch').'', ['class' => 'control-label']) !!}
                     {!! Form::select('branch_id', $branches, old('branch_id'), ['class' => 'form-control select2']) !!}
@@ -58,7 +58,7 @@
                         </p>
                     @endif
                 </div>
-            </div>
+            </div> --}}
             
         </div>
     </div>

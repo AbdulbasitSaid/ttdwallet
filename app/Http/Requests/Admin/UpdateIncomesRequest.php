@@ -27,7 +27,6 @@ class UpdateIncomesRequest extends FormRequest
             'income_category_id' => 'required',
             'entry_date' => 'required|date_format:'.config('app.date_format'),
             'amount' => 'required',
-            'branch_id' => 'required',
         ];
     }
 }

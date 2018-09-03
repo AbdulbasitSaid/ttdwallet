@@ -116,7 +116,7 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1, 2]);
         });
         Gate::define('income_edit', function ($user) {
-            return in_array($user->role_id, [1, 3]);
+            return in_array($user->role_id, [1,2,3]);
         });
         Gate::define('income_view', function ($user) {
             return in_array($user->role_id, [1, 2, 3]);
@@ -133,7 +133,7 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1, 2]);
         });
         Gate::define('expense_edit', function ($user) {
-            return in_array($user->role_id, [1]);
+            return in_array($user->role_id, [1,2,3]);
         });
         Gate::define('expense_view', function ($user) {
             return in_array($user->role_id, [1, 2, 3]);
