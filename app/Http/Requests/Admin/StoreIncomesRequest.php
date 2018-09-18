@@ -24,7 +24,7 @@ class StoreIncomesRequest extends FormRequest
     {
         return [
             'income_category_id' => 'required',
-            'entry_date' => 'required|date_format:'.config('app.date_format'),
+             'entry_date' => "",
             'amount' => 'required',
             'branch_id' => 'required',
         ];

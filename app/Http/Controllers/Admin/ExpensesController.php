@@ -49,8 +49,9 @@ class ExpensesController extends Controller
         
         $expense_categories = \App\ExpenseCategory::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $branches = Auth::user();  
-
-        return view('admin.expenses.create', compact('expense_categories', 'branches'));
+        $displayDate = date("l dS \of F Y");
+        $todaysDate = date("Y-m-d");
+        return view('admin.expenses.create', compact('expense_categories', 'branches','displayDate','todaysDate'));
     }
 
     /**
@@ -143,7 +144,7 @@ class ExpensesController extends Controller
         }
         $expense = Expense::findOrFail($id);
         $expense->delete();
-
+        
         return redirect()->route('admin.expenses.index');
     }
 

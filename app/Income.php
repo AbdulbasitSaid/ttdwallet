@@ -15,9 +15,11 @@ use Carbon\Carbon;
 */
 class Income extends Model
 {
+    //protected $today = " ";
     protected $fillable = ['entry_date', 'amount', 'income_category_id', 'branch_id'];
+
     protected $hidden = [];
-    
+
     
     public static function boot()
     {
@@ -41,11 +43,8 @@ class Income extends Model
      */
     public function setEntryDateAttribute($input)
     {
-        if ($input != null && $input != '') {
-            $this->attributes['entry_date'] = Carbon::createFromFormat(config('app.date_format'), $input)->format('Y-m-d');
-        } else {
-            $this->attributes['entry_date'] = null;
-        }
+       
+            $this->attributes['entry_date'] = date("Y-m-d");
     }
 
     /**
@@ -53,7 +52,7 @@ class Income extends Model
      * @param $input
      *
      * @return string
-     */
+     */ 
     public function getEntryDateAttribute($input)
     {
         $zeroDate = str_replace(['Y', 'm', 'd'], ['0000', '00', '00'], config('app.date_format'));

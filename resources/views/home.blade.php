@@ -1,7 +1,51 @@
 @extends('layouts.app')
 
 @section('content')
-   
+   <div class="row">
+      <div class = "col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Branch Activity</h3>
+            </div>
+                <div class="panel-body table-responsive">
+                    <div class="accordion">
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Select Branch</label>
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <input type="text" id = "branchsearch" class="form-control" placeholder="Branch Name">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-body">
+                               <div class="row">
+                                   <div class="col-md-12">
+                                       <label></label>
+                                       <table class="table table-active table-striped">
+                                           <tr>
+                                               <th>Income</th>
+                                               <th>Expense</th>
+                                               <th>Date</th>
+                                               <th>Profit</th>
+                                           </tr>
+                                
+                                       </table>
+                                   </div>
+                            
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+      </div>
+   </div>
    <div class = "row">
         @if( Auth::check() && Auth::user()->role_id == 1)
        <div class="col-md-12">
@@ -402,8 +446,24 @@
                       // alert('Profit');
                       $('#profit').css('background-color','#00FF7F');
                    }
+                   $("#branchsearch").change(
+                    function(){
+                        $.get(
+                            "/admin/home",function(data,status){
+                               // alert("DATA: "+ data+"\n Status" + status);
+                               console.log("DAta :" + data +" :"+ status);
+                            }
+                        );
+
+                    }
+                );
                 }
             );
+               
+
+        </script>
+        <script>
+              
         </script>
     </div>
 

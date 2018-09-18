@@ -51,9 +51,11 @@ class IncomesController extends Controller
         }
         
         $income_categories = \App\IncomeCategory::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
-       // $branches = \App\User::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $todaysDate = date("Y-m-d ");
+        $displayDate = date('l dS \of  F Y ');
+      
        $branches = Auth::user();
-        return view('admin.incomes.create', compact('income_categories', 'branches'));
+        return view('admin.incomes.create', compact('income_categories', 'branches','todaysDate','displayDate'));
     }
 
     /**
@@ -64,10 +66,11 @@ class IncomesController extends Controller
      */
     public function store(StoreIncomesRequest $request)
     {
+       
         if (! Gate::allows('income_create')) {
             return abort(401);
         }
-        
+        $request->input('entry_date', date("Y-m-d")); 
         $income = Income::create($request->all());
 
 

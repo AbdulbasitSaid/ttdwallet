@@ -24,8 +24,9 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('entry_date', trans('quickadmin.income.fields.entry-date').'*', ['class' => 'control-label']) !!}
-                    {!! Form::text('entry_date', old('entry_date'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::label('entry_date', trans('quickadmin.income.fields.entry-date').' : ', ['class' => 'control-label']) !!}
+                    <h3>{{$displayDate}}</h3>
+                    {!! Form::hidden('entry_date', old('entry_date'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('entry_date'))
                         <p class="help-block">
@@ -36,7 +37,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('amount', trans('quickadmin.income.fields.amount').'*', ['class' => 'control-label']) !!}
+                    {!! Form::label('amount', trans('quickadmin.income.fields.amount').' * ', ['class' => 'control-label']) !!}
                     {!! Form::number('amount', old('amount'), ['class' => 'form-control', 'placeholder' => 'Please Enter Numberic Values only', 'required' => '','min'=>'0'
                         ,'step'=>'0.01']) !!}
                     <p class="help-block"></p>

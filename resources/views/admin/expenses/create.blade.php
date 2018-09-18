@@ -25,7 +25,8 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('entry_date', trans('quickadmin.expense.fields.entry-date').'*', ['class' => 'control-label']) !!}
-                    {!! Form::text('entry_date', old('entry_date'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    <h3>{{$displayDate}}</h3>
+                    {!! Form::hidden('entry_date',$todaysDate, old('entry_date'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('entry_date'))
                         <p class="help-block">
